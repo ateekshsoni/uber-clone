@@ -1,5 +1,4 @@
 <!-- filepath: /C:/Users/dell/OneDrive/Desktop/Full Stack Development/uber-clone/BACKEND/readme.md -->
-
 # API Documentation
 
 ## POST /users/register
@@ -25,7 +24,7 @@ Registers a new user to the system.
 
 ### Example Request
 
-````json
+```json
 {
   "fullname": {
     "firstname": "John",
@@ -34,6 +33,7 @@ Registers a new user to the system.
   "email": "john.doe@example.com",
   "password": "securepassword"
 }
+```
 
 ## POST /users/login
 
@@ -62,4 +62,4 @@ Logs in an existing user.
   "email": "john.doe@example.com",
   "password": "securepassword"
 }
-````
+```  
