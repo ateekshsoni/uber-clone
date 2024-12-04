@@ -1,4 +1,5 @@
 <!-- filepath: /C:/Users/dell/OneDrive/Desktop/Full Stack Development/uber-clone/BACKEND/readme.md -->
+
 # API Documentation
 
 ## POST /users/register
@@ -24,7 +25,7 @@ Registers a new user to the system.
 
 ### Example Request
 
-```json
+````json
 {
   "fullname": {
     "firstname": "John",
@@ -33,3 +34,32 @@ Registers a new user to the system.
   "email": "john.doe@example.com",
   "password": "securepassword"
 }
+
+## POST /users/login
+
+### Description
+
+Logs in an existing user.
+
+### Request Body
+
+- `email` (string, required): Valid email address.
+- `password` (string, required): Minimum 6 characters.
+
+### Responses
+
+- **200 OK**
+  - Returns the authenticated user and an authentication token.
+- **400 Bad Request**
+  - Validation errors with details in the `errors` array.
+- **401 Unauthorized**
+  - Invalid email or password.
+
+### Example Request
+
+```json
+{
+  "email": "john.doe@example.com",
+  "password": "securepassword"
+}
+````
