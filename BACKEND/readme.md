@@ -62,4 +62,58 @@ Logs in an existing user.
   "email": "john.doe@example.com",
   "password": "securepassword"
 }
-```  
+```
+
+## GET /users/profile
+
+### Description
+
+Fetches the profile of the authenticated user.
+
+### Headers
+
+- `Authorization` (string, required): Bearer token.
+
+### Responses
+
+- **200 OK**
+  - Returns the authenticated user's profile.
+- **401 Unauthorized**
+  - If the user is not authenticated.
+
+### Example Request
+
+```json
+{
+  "headers": {
+    "Authorization": "Bearer <token>"
+  }
+}
+```
+
+## GET /users/logout
+
+### Description
+
+Logs out the authenticated user by clearing the authentication token.
+
+### Headers
+
+- `Authorization` (string, required): Bearer token.
+
+### Responses
+
+- **200 OK**
+  - Returns a message indicating successful logout.
+- **401 Unauthorized**
+  - If the user is not authenticated.
+
+### Example Request
+
+```json
+{
+  "headers": {
+    "Authorization": "Bearer <token>"
+  }
+}
+```
