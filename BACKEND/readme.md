@@ -161,3 +161,85 @@ Registers a new captain to the system.
   }
 }
 ```
+
+## POST /captains/login
+
+### Description
+
+Logs in an existing captain.
+
+### Request Body
+
+- `email` (string, required): Valid email address.
+- `password` (string, required): Minimum 8 characters.
+
+### Responses
+
+- **200 OK**
+  - Returns the authenticated captain and an authentication token.
+- **400 Bad Request**
+  - Validation errors with details in the `errors` array.
+- **401 Unauthorized**
+  - Invalid email or password.
+
+### Example Request
+
+```json
+{
+  "email": "captain.doe@example.com",
+  "password": "securepassword"
+}
+```
+
+## GET /captains/profile
+
+### Description
+
+Fetches the profile of the authenticated captain.
+
+### Headers
+
+- `Authorization` (string, required): Bearer token.
+
+### Responses
+
+- **200 OK**
+  - Returns the authenticated captain's profile.
+- **401 Unauthorized**
+  - If the captain is not authenticated.
+
+### Example Request
+
+```json
+{
+  "headers": {
+    "Authorization": "Bearer <token>"
+  }
+}
+```
+
+## GET /captains/logout
+
+### Description
+
+Logs out the authenticated captain by clearing the authentication token.
+
+### Headers
+
+- `Authorization` (string, required): Bearer token.
+
+### Responses
+
+- **200 OK**
+  - Returns a message indicating successful logout.
+- **401 Unauthorized**
+  - If the captain is not authenticated.
+
+### Example Request
+
+```json
+{
+  "headers": {
+    "Authorization": "Bearer <token>"
+  }
+}
