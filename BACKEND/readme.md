@@ -117,3 +117,47 @@ Logs out the authenticated user by clearing the authentication token.
   }
 }
 ```
+
+## POST /captains/register
+
+### Description
+
+Registers a new captain to the system.
+
+### Request Body
+
+- `fullname` (object, required)
+  - `firstname` (string, required): Minimum 3 characters.
+  - `lastname` (string, optional): Minimum 3 characters.
+- `email` (string, required): Valid email address.
+- `password` (string, required): Minimum 8 characters.
+- `vehicle` (object, required)
+  - `color` (string, required): Minimum 3 characters.
+  - `plate` (string, required): Minimum 3 characters.
+  - `capacity` (number, required): Minimum 1.
+  - `vehicleType` (string, required): Must be one of `'car'`, `'auto'`, `'motorcycle'`.
+
+### Responses
+
+- **201 Created**
+  - Returns the newly created captain and an authentication token.
+- **400 Bad Request**
+  - Validation errors with details in the `errors` array.
+
+### Example Request
+```json
+{
+  "fullname": {
+    "firstname": "John",
+    "lastname": "Doe"
+  },
+  "email": "john.doe@example.com",
+  "password": "securepassword",
+  "vehicle": {
+    "color":"blue",
+    "plate":"MP 04 XY ABCD",
+    "capacity":"3",
+    "vehicleType":"car",
+  }
+}
+```
