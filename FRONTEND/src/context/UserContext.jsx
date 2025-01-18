@@ -1,7 +1,8 @@
-import React, { createContext, useState } from 'react'
+import React, { createContext, useContext, useState } from 'react'
 export const UserDataContext = createContext();
 
 const UserContext = ({children}) => {
+    // Initialize user state with empty object
     const [user, setuser] = useState({
         email:'',
         fullname:{
@@ -11,7 +12,7 @@ const UserContext = ({children}) => {
     })
   return (
     <div>
-        <UserDataContext.Provider >
+        <UserDataContext.Provider value={{ user , setuser}} >
           {children}
         </UserDataContext.Provider>
     </div>

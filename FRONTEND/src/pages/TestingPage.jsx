@@ -1,52 +1,21 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from 'react'
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import "remixicon/fonts/remixicon.css";
 import LocationSearchPanel from "../Components/LocationSearchPanel";
-import VehiclePanel from "../Components/VehiclePanel";
-import ConfirmRide from "../context/ConfirmRide";
-
-const Home = () => {
-  const [pickupLocation, setPickupLocation] = useState("");
+const TestingPage = () => {
+    const [pickupLocation, setPickupLocation] = useState("");
   const [destination, setDestination] = useState("");
   const [openPanel, setOpenPanel] = useState(false);
   const panelRef = useRef(null);
-  const vehiclePanelRef = useRef(null);
-  const ConfirmRideRef = useRef(null)
   const closePanelIcon = useRef(null);
-  const [vehiclePanel, setVehiclePanel] = useState(false);
-  const [confirmRidePanel, setConfirmRidePanel] = useState(false)
-
-  useGSAP(() => {
-    if (vehiclePanel) {
-      gsap.to(vehiclePanelRef.current, {
-        transform: "translateY(0%)",
-      });
-    } else {
-      gsap.to(vehiclePanelRef.current, {
-        transform: "translateY(100%)",
-      });
-    }
-  }, [vehiclePanel]);
-  useGSAP(()=>{
-    if(confirmRidePanel){
-      gsap.to(ConfirmRideRef.current,{
-        transform:"translateY(0%)"
-      })
-    }else{
-      gsap.to(ConfirmRideRef.current,{
-        transform:"translateY(100%)"
-      })
-    }
-  },[confirmRidePanel])
-
   useGSAP(() => {
     gsap.to(panelRef.current, {
       height: openPanel ? "70%" : "0%",
     });
   }, [openPanel]);
   return (
-    <>
+    <div>
       <div className="h-screen relative overflow-hidden">
         <img
           src="https://logospng.org/download/uber/logo-uber-4096.png"
@@ -96,28 +65,23 @@ const Home = () => {
             </form>
           </div>
           <div ref={panelRef} className="h-[0%] bg-white ">
-            <LocationSearchPanel
-              setOpenPanel={setOpenPanel}
-              openPanel={openPanel}
-              vehiclePanel={vehiclePanel}
-              setVehiclePanel={setVehiclePanel}
-            />
+            <LocationSearchPanel />
           </div>
         </div>
-        <div
-          ref={vehiclePanelRef}
-          className="fixed w-full  bg-white  z-10 translate-y-full bottom-0 px-3 py-6"
-        >
-         <VehiclePanel setOpenPanel={setOpenPanel} setVehiclePanel={setVehiclePanel} />
-        </div>
-        <div
-          ref={ConfirmRideRef}
-          className="fixed w-full  bg-white  z-10 translate-y-full bottom-0 px-3 py-6"
-        >
-         <ConfirmRide setVehiclePanel={setVehiclePanel} setConfirmRidePanel={setConfirmRidePanel}  /> 
+        <div className="fixed bg-white z-10 bottom-0 p-5">
+          <div className="flex items-center justify-between">
+            <img className="h-20" src="https://th.bing.com/th/id/OIP.90_IXyFPb47LZ_AYAe1ylAHaEK?w=293&h=180&c=7&r=0&o=5&pid=1.7" alt="" />
+            <div>
+              <h4>UberGo <span><i className="ri-user-line"></i>4</span> </h4>
+              <h5>2 minutes away</h5>
+              <p>Affordble,combact rides</p>
+            </div>
+            <h2>₹193.2</h2>
+          </div>
         </div>
       </div>
-    </>
-  );
-};
-export default Home;
+    </div>
+  )
+}
+
+export default TestingPage
