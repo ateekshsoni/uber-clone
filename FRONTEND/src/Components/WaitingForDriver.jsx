@@ -33,6 +33,16 @@ const WaitingForDriver = () => {
         </div>
         <div className="flex gap-5 items-center border-b-2 p-3">
           <h4 className="text-lg">
+            <i className="ri-map-pin-fill"></i>
+          </h4>
+          <div>
+            <h3 className="text-lg font-medium ">562/11-A</h3>
+            <h5 className="text-sm -mt-1 text-gray-700">
+            </h5>
+          </div>
+        </div>
+        <div className="flex gap-5 items-center border-b-2 p-3">
+          <h4 className="text-lg">
             <i className="ri-cash-line"></i>
           </h4>
           <div>
