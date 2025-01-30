@@ -1,4 +1,5 @@
 <!-- filepath: /C:/Users/dell/OneDrive/Desktop/Full Stack Development/uber-clone/BACKEND/readme.md -->
+
 # API Documentation
 
 ## POST /users/register
@@ -145,6 +146,7 @@ Registers a new captain to the system.
   - Validation errors with details in the `errors` array.
 
 ### Example Request
+
 ```json
 {
   "fullname": {
@@ -154,10 +156,10 @@ Registers a new captain to the system.
   "email": "john.doe@example.com",
   "password": "securepassword",
   "vehicle": {
-    "color":"blue",
-    "plate":"MP 04 XY ABCD",
-    "capacity":"3",
-    "vehicleType":"car",
+    "color": "blue",
+    "plate": "MP 04 XY ABCD",
+    "capacity": "3",
+    "vehicleType": "car"
   }
 }
 ```
@@ -237,9 +239,89 @@ Logs out the authenticated captain by clearing the authentication token.
 
 ### Example Request
 
+````json
+{
+  "headers": {
+    "Authorization": "Bearer <token>"
+  }
+}
+````
+
+## POST /rides/create
+
+### Description
+
+Creates a new ride.
+
+### Request Body
+
+- `pickup` (string, required): The pickup location.
+- `dropoff` (string, required): The dropoff location.
+- `vehicleType` (string, required): The type of vehicle. Must be one of `'auto'`, `'car'`, `'motorcycle'`.
+
+### Headers
+
+- `Authorization` (string, required): Bearer token.
+
+### Responses
+
+- **201 Created**
+  - Returns the newly created ride.
+- **400 Bad Request**
+  - Validation errors with details in the `errors` array.
+- **500 Internal Server Error**
+  - If there is an error creating the ride.
+
+### Example Request
+
 ```json
 {
   "headers": {
     "Authorization": "Bearer <token>"
+  },
+  "body": {
+    "pickup": "123 Main St",
+    "dropoff": "456 Elm St",
+    "vehicleType": "car"
+  }
+}
+```
+
+## GET /rides/get-fare
+
+### Description
+
+Calculates the fare for a ride based on the pickup and dropoff locations and the vehicle type.
+
+### Query Parameters
+
+- `pickup` (string, required): The pickup location.
+- `dropoff` (string, required): The dropoff location.
+- `vehicleType` (string, required): The type of vehicle. Must be one of `'auto'`, `'car'`, `'motorcycle'`.
+
+### Headers
+
+- `Authorization` (string, required): Bearer token.
+
+### Responses
+
+- **200 OK**
+  - Returns the calculated fare.
+- **400 Bad Request**
+  - Validation errors with details in the `errors` array.
+- **500 Internal Server Error**
+  - If there is an error calculating the fare.
+
+### Example Request
+
+```json
+{
+  "headers": {
+    "Authorization": "Bearer <token>"
+  },
+  "query": {
+    "pickup": "123 Main St",
+    "dropoff": "456 Elm St",
+    "vehicleType": "car"
   }
 }
