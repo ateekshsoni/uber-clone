@@ -1,6 +1,7 @@
 import React from "react";
 
 const ConfirmRide = (props) => {
+
   return (
     <>
       <div className="flex justify-between items-center">
@@ -28,7 +29,7 @@ const ConfirmRide = (props) => {
             <div>
               <h3 className="text-lg font-medium ">562/11-A</h3>
               <h5 className="text-sm -mt-1 text-gray-700">
-                Kalikondrahali , Bengluru , Karnataka
+                {props.dropoff}
               </h5>
             </div>
           </div>
@@ -38,7 +39,7 @@ const ConfirmRide = (props) => {
             </h4>
             <div>
               <h3 className="text-lg font-medium ">562/11-A</h3>
-              <h5 className="text-sm -mt-1 text-gray-700"></h5>
+              <h5 className="text-sm -mt-1 text-gray-700">{props.pickup} </h5>
             </div>
           </div>
           <div className="flex gap-5 items-center border-b-2 p-3">
@@ -46,12 +47,12 @@ const ConfirmRide = (props) => {
               <i className="ri-cash-line"></i>
             </h4>
             <div>
-              <h3 className="text-lg font-medium ">₹193.20</h3>
+              <h3 className="text-lg font-medium ">₹{props.fare[props.vehicleType]} </h3>
               <h5 className="text-sm -mt-1 text-gray-700">Cash Cash</h5>
             </div>
           </div>
         </div>
-        <button onClick={()=>{ props.setLookingForDriverPanel(true) , props.setConfirmRidePanel(false)}} className=" mt-5 w-full px-4 py-2 text-white font-semibold bg-green-500  rounded-lg">
+        <button onClick={()=>{ props.setLookingForDriverPanel(true) , props.setConfirmRidePanel(false) , props.createRide()}} className=" mt-5 w-full px-4 py-2 text-white font-semibold bg-green-500  rounded-lg">
           Confirm
         </button>
       </div>

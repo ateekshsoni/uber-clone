@@ -37,13 +37,7 @@ async function getFare({ pickup, dropoff }) {
       // Calculate total fare
       const totalFare = Math.round((baseFare + distanceFare) * timeSurge);
       
-      fares[vehicleType] = {
-        estimatedFare: totalFare,
-        distance: distanceTime.distance.text,
-        duration: distanceTime.duration.text,
-        baseFare: baseFare,
-        perKmRate: perKmRates[vehicleType]
-      };
+      fares[vehicleType] = totalFare;
     });
 
     return fares;
@@ -57,14 +51,17 @@ function getOtp(num){
     return crypto.randomInt(Math.pow(10, num-1), Math.pow(10, num)).toString();
 }
 
-module.exports.createRide = async ({
-    user , pickup , dropoff , vehicleType
-}) => {
+module.exports = {
+  getFare,
+  createRide: async ({ user, pickup, dropoff, vehicleType }) => {
     if(!user || !pickup || !dropoff || !vehicleType){
         throw new Error('All fields are required');
     }
 
-    const fares = await getFare(pickup, dropoff);
+    const fares = await getFare({ 
+        pickup, 
+        dropoff 
+    });
 
     const ride = await rideModel.create({
         user,
@@ -72,11 +69,8 @@ module.exports.createRide = async ({
         dropoff,
         vehicleType,
         otp: getOtp(6),
-        fare: fares[vehicleType].estimatedFare
+        fare: fares[vehicleType]  // Remove .estimatedFare since fare is a direct number
     });
     return ride;
-}
-
-module.exports = {
-  getFare,
+  }
 };

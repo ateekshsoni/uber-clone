@@ -5,14 +5,6 @@ const LookingForDriver = (props) => {
     <>
       <div className="flex justify-between items-center">
         <h2 className="text-xl font-semibold py-1">Looking For Captain </h2>
-        {/* <h4
-          className="text-xl"
-          onClick={() => {
-            props.setConfirmRidePanel(true), props.setLookingForDriverPanel(false);
-          }}
-        >
-          <i className="ri-arrow-left-line"></i>
-        </h4> */}
       </div>
       <div className="flex justify-between items-center flex-col">
         <img
@@ -28,7 +20,7 @@ const LookingForDriver = (props) => {
             <div>
               <h3 className="text-lg font-medium ">562/11-A</h3>
               <h5 className="text-sm -mt-1 text-gray-700">
-                Kalikondrahali , Bengluru , Karnataka
+                {props.dropoff}
               </h5>
             </div>
           </div>
@@ -38,7 +30,9 @@ const LookingForDriver = (props) => {
             </h4>
             <div>
               <h3 className="text-lg font-medium ">562/11-A</h3>
-              <h5 className="text-sm -mt-1 text-gray-700"></h5>
+              <h5 className="text-sm -mt-1 text-gray-700">
+                {props.pickup}{" "}
+              </h5>
             </div>
           </div>
           <div className="flex gap-5 items-center border-b-2 p-3">
@@ -46,7 +40,7 @@ const LookingForDriver = (props) => {
               <i className="ri-cash-line"></i>
             </h4>
             <div>
-              <h3 className="text-lg font-medium ">₹193.20</h3>
+              <h3 className="text-lg font-medium ">₹{props.fare[props.vehicleType]} </h3>
               <h5 className="text-sm -mt-1 text-gray-700">Cash Cash</h5>
             </div>
           </div>

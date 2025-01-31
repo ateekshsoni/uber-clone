@@ -11,9 +11,10 @@ module.exports.createRide = async (req, res) => {
     try{
         const ride = await rideService.createRide({ user: req.user._id, pickup, dropoff, vehicleType });
         return res.status(201).json({ ride });
-        
+
     } catch(error){
         console.error(error);
+        console.log('Error creating ride:', error);
         return res.status(500).json({ message: 'Internal Server Error' });
     }
 }
